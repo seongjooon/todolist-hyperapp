@@ -21,19 +21,28 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: true }
-          }
-        ]
-      }
+            options: { minimize: true },
+          },
+        ],
+      },
+      {
+        rules: [
+          {
+            test: /\.p?css$/,
+            use: ['style-loader', 'css-loader', 'postcss-loader'],
+          },
+          { test: /\.ts$/, use: 'ts-loader' },
+        ],
+      },
     ],
   },
   devServer: {
-    port: 8080
+    port: 8080,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
-  ]
+      template: './src/index.html',
+      filename: './index.html',
+    }),
+  ],
 };
